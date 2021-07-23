@@ -1,0 +1,31 @@
+%YAML 1.0
+---
+Pose:
+  Model: './trained/Human_pose_FP32/human-pose-estimation-0001.xml'    
+  Device: 'CPU'
+
+Robot:
+  Api: 'opencv'
+  Device: 'cpu'
+  Backend: 'default'
+  Id_strings: '[robot,none]'
+  Detector_model_weights: './trained/graffiti_robot/ssd_mobilenet_inference_graph_v1_3_irv7.bin'
+  Detector_model_conf: './trained/graffiti_robot/ssd_mobilenet_inference_graph_v1_3_irv7.xml'
+  Detector_confidence_threshold: 0.9
+  Detector_nms_threshold: 0.3
+  Detector_input_size: '[0,0]'
+  Min_detection_size: '[10,10]'
+
+Counter:
+  Api: 'ie'
+  Device: 'cpu'
+  Backend: 'ie'
+  Id_strings: '[person]'
+  Detector_model_conf: './trained/counter/FP32/person-detection-retail-0013.xml'
+  Detector_model_weights: './trained/counter/FP32/person-detection-retail-0013.bin'
+  Detector_confidence_threshold: 0.7
+  Detector_nms_threshold: 0.3
+  Detector_input_size: '[ 544, 320 ]'
+  Min_detection_size: '[ 40, 35 ]'
+  Learning_rate: -1
+

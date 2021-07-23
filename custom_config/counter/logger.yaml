@@ -1,0 +1,11 @@
+%YAML 1.1
+---
+Logs_setup:
+  Full_log_path: /usr/local/vsafety/config/vsafety.log
+  Messages_date_format: "%Y/%m/%d\t%H:%M:%S"
+  Enable_debug_messages: true
+  Enable_info_messages: true
+  Enable_warning_messages: true
+  Enable_error_messages: true
+  Enable_critical_messages: true
+  Enable_system_messages: false

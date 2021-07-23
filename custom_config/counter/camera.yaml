@@ -1,0 +1,39 @@
+%YAML 1.1
+---
+Camera_parameters: 
+   Camera_type: usb
+   //Folder_path: '/home/pi/Desktop/hour_16'
+   FPS: 15
+   //Left_image_filter: "IMGL_*.jpg"
+   //Right_image_filter: "IMGR_*.jpg"
+   //3D_image_filter: 'IMG3d_*.pcldat'
+SensorParameters_IR:
+   Roi_left: 10
+   Roi_right: 400
+   Roi_top: 500
+   Roi_bottom: 10
+   Id: ''
+   FPS: 15
+   Left_enabled: 1
+   Right_enabled: -2
+   Format: Y8
+   Width: 640
+   Height: 480
+   Gain: 16
+   Exposure: 1000
+   Auto_exposure: 1
+   Auto_white_balance: 1
+   Emitter_power: 80
+   Emitter_enabled: 1
+   DS_neighbour_threshold: 150
+   DS_disparity_diference_threshold: 1.0
+SensorParameters_RGB:
+   Color_enabled: -2
+   Format: BGR8
+   Width: 640
+   Height: 480
+   Gain: 10
+   Exposure: 30
+   Auto_exposure: 0
+   Auto_white_balance: 1
+

@@ -1,0 +1,15 @@
+%YAML 1.1
+---
+File_comm:
+  Comm_mode: read/write
+  File_path: "/home/pi/Desktop/raspberry/"
+  One_file_per_day: true
+  Add_id: true
+  Add_type: true
+  Add_severity: true
+  Add_time: true
+Machine_simulation_state:
+  Service_state: run
+  Operation_mode: normal
+  Motion_direction: upward
+  Speeds_state: hight

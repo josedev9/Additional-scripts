@@ -1,0 +1,12 @@
+%YAML 1.1
+---
+Insight_comm:
+  Comm_mode: none
+  Key_crt_path: ""
+  Key_file: server.key
+  Crt_file: server.crt
+  Server_port: 443
+  Client_port: 443
+  Username: tkeic
+  Password: Thyssen123$
+  Keep_alive_period: 3

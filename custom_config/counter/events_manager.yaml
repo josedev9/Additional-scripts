@@ -1,0 +1,210 @@
+%YAML 1.1
+---
+Presence:
+  State: 'on'
+  Draw_it: off
+  Event_id: 0
+  Enable_static_zone: on
+  Enable_horizontal_zone: on
+  Enable_inclined_zone: on
+  Min_time_for_medium_risk: 0.25
+  Min_time_for_high_risk: 2
+  Min_time_until_event_appears: 0.5
+  Min_time_until_event_disappears: 0.5
+
+Transgression:
+  State: 'off'
+  Draw_it: on
+  Event_id: 1
+  Enable_static_zone: off
+  Enable_horizontal_zone: on
+  Enable_inclined_zone: on
+  Enable_left_detection: on
+  Enable_right_detection: on
+  Enable_height_detection: on
+  Ceiling_height: 2
+  Medium_risk_length: 0.25
+  High_risk_length: 0.5
+  Min_time_for_medium_risk: 0.25
+  Min_time_for_high_risk: 2
+  Min_time_until_event_disappears: 0.5
+
+Wrong_way_movement:
+  State: 'off'
+  Draw_it: on
+  Event_id: 3
+  Enable_static_zone: off
+  Enable_horizontal_zone: on
+  Enable_inclined_zone: on
+  Min_time_for_medium_risk: -1
+  Min_time_for_high_risk: 2
+  Min_time_until_event_disappears: 0.25
+  Max_permissible_speed_in_ascending_operation: 0.4
+  Max_permissible_speed_in_descending_operation: 0.4
+
+Same_way_movement:
+  State: 'off'
+  Draw_it: on
+  Event_id: 2
+  Enable_static_zone: off
+  Enable_horizontal_zone: on
+  Enable_inclined_zone: on
+  Min_time_for_medium_risk: 1
+  Min_time_for_high_risk: -1
+  Min_time_until_event_disappears: 0.25
+  Max_permissible_speed_in_ascending_operation: 0.4
+  Max_permissible_speed_in_descending_operation: 0.4
+
+Static:
+  State: 'off'
+  Draw_it: on
+  Event_id: 4
+  Enable_static_zone: on
+  Enable_horizontal_zone: off
+  Enable_inclined_zone: off
+  Min_time_for_medium_risk: 3
+  Min_time_for_high_risk: 6
+  Min_time_until_event_disappears: 0.5
+  Max_speed_considered_as_static: 0.2
+
+Fall:
+  State: 'off'
+  Draw_it: on
+  Event_id: 5
+  Enable_static_zone: on
+  Enable_horizontal_zone: on
+  Enable_inclined_zone: on
+  Sensitivity: 0.75
+  Max_height_considered_fall: 1.20
+  Previous_frame_pos_to_compare: 10
+  Min_time_for_medium_risk: 1
+  Min_time_for_high_risk: 2
+  Min_time_until_event_disappears: 0.5
+
+Agglomerations:
+  State: 'off'
+  Draw_it: on
+  Event_id: 6
+  Enable_static_zone: on
+  Enable_horizontal_zone: on
+  Enable_inclined_zone: on
+  Min_time_until_event_disappears: 0.0
+  Min_time_for_medium_risk: 1
+  Min_time_for_high_risk: 2
+  Precomb_time_for_medium_risk: 2.0
+  Precomb_time_for_high_risk: 4.0
+  Precomb_percentage_width_for_medium_risk: 60
+  Precomb_percentage_width_for_high_risk: 85
+  Landing_time_for_medium_risk: 40
+  Landing_time_for_high_risk: 60
+  Landing_percentage_width_for_medium_risk: 80
+  Landing_percentage_width_for_high_risk: 90
+  Cover_time_for_medium_risk: 6
+  Cover_time_for_high_risk: 8
+  Cover_percentage_width_for_medium_risk: 60
+  Cover_percentage_width_for_high_risk: 85
+
+Robot:
+  State: 'off'
+  Draw_it: 'on'
+  Event_id: 102
+  Enable_static_zone: off
+  Enable_horizontal_zone: on
+  Enable_inclined_zone: on
+  Min_time_for_high_risk: 0.5
+  Min_time_for_medium_risk: 1.5
+  Min_time_until_event_appears: 1
+  Min_time_until_event_disappears: 1.5
+
+Graffiti:
+  State: 'off'
+  Draw_it: 'on' 
+  Event_id: 106
+  Enable_static_zone: off
+  Enable_horizontal_zone: on
+  Enable_inclined_zone: on
+  Min_time_for_high_risk: 0.8
+  Min_time_for_medium_risk: 0.9
+  Min_time_until_event_appears: 1
+  Min_time_until_event_disappears: 1
+  score_max: 30
+  score_detection_thres: 10
+  score_decrement: 2
+  score_increment: 3  
+
+Wheelchair:
+  State: 'off'
+  Draw_it: 'on'
+  Event_id: 108
+  Enable_static_zone: off
+  Enable_horizontal_zone: on
+  Enable_inclined_zone: on
+  Min_time_for_high_risk: 0.1
+  Min_time_for_medium_risk: 0.1
+  Min_time_until_event_appears: 0.5
+  Min_time_until_event_disappears: 0.5
+  Joint_angles_min_thres: 80.0
+  Joint_angles_max_thres: 150.0
+  Joint_distances_thres: 0.3
+  Height_thres: 1.5
+  Score_max: 6
+  Score_detection_thres: 5
+  Score_decrement: 1
+  Score_increment: 3
+  Aspect_ratio: 0.6
+  
+Manipulation:
+  State: 'off'
+  Draw_it: 'on'
+  Event_id: 105
+  Enable_static_zone: off
+  Enable_horizontal_zone: on
+  Enable_inclined_zone: on
+  Min_time_for_high_risk: 2
+  Min_time_for_medium_risk: 2
+  Min_time_until_event_appears: 0.5
+  Min_time_until_event_disappears: 1
+  scene_3D_manipulation_points_distance: 0.25
+  
+Occupancy:
+  State: 'off'
+  Draw_it: 'on'
+  Event_id: -1
+  Enable_static_zone: off
+  Enable_horizontal_zone: on
+  Enable_inclined_zone: on
+  Min_time_for_high_risk: 0.8
+  Min_time_for_medium_risk: 0.9
+  Min_time_until_event_appears: 0.5
+  Min_time_until_event_disappears: 0.5
+  Min_percentaje_interval: 12 
+  
+Counter:
+  State: 'on'
+  Draw_it: 'on'
+  Event_id: -1
+  Enable_static_zone: off
+  Enable_horizontal_zone: on
+  Enable_inclined_zone: on
+  Min_time_for_high_risk: 0.0
+  Min_time_for_medium_risk: 0.0
+  Min_time_until_event_appears: 0
+  Min_time_until_event_disappears: 0
+  
+Social_distance:
+  State: 'off'
+  Draw_it: 'on'
+  Event_id: 115
+  Enable_static_zone: off
+  Enable_horizontal_zone: on
+  Enable_inclined_zone: on
+  Min_time_for_high_risk: 0.8
+  Min_time_for_medium_risk: 0.9
+  Min_time_until_event_appears: 1
+  Min_time_until_event_disappears: 1
+  Minimun_distancemm: 1200
+
+File_comm_csv:
+  Event_driven: true
+  Time_driven: false
+  Time_interval: 300

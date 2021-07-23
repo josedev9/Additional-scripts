@@ -1,0 +1,8 @@
+%YAML 1.1
+---
+Scene_points:
+  Poinst_mode: "line"
+  Point_0_3D: "[-0.58, -1.03, 2.90]"
+  Point_0_2D: "[240, 97]"
+  Point_1_3D: "[1.71, 0.82, 2.36]"
+  Point_1_2D: "[597, 368]"

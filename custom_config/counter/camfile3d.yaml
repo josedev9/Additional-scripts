@@ -1,0 +1,9 @@
+%YAML 1.1
+---
+Camera_parameters:
+  Camera_type: archive
+  FPS: 15
+  Folder_path: /home/tkeic/Imágenes/
+  Left_image_filter: IMGL_*.jpg
+  Right_image_filter: IMGR_*.jpg
+  3D_image_filter: IMG3d_*.pcldat

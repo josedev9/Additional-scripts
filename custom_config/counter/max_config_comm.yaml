@@ -1,0 +1,28 @@
+%YAML 1.1
+---
+Modbus_comm:
+  Comm_mode: none
+  Debug_info: false
+  Presence_reliable: true
+  Keep_alive_period: 180
+Server:
+  Port: 502
+  Device_id: 64.0
+Register_map:
+  Keep_alive: 0.0
+  Machine_state: 1.0
+  Commit_hash: 2.0
+  Software_version: 3.0
+  Mix_info: 4.0
+  Presence: 5.0
+  Transgression: 10.0
+  Same_way: 15.0
+  Wrong_way: 20.0
+  Static: 25.0
+  Fall: 30.0
+Register_Offsets:
+  Event_id_block_1: 0
+  Event_id_block_2: 1
+  Event_id_block_3: 2
+  Event_id_block_4: 3
+  Event_detection_info: 4

@@ -1,0 +1,19 @@
+%YAML 1.1
+---
+Counter:
+  Ceiling_mount: 1
+  Area_counter: 0
+  Poligonal_area: 0
+  Use_3D_info: 0
+  Use_kallman: 0
+  Max_projected_height: 250
+  Min_projected_height: 100
+  Person_size_projected2floor: 50
+  Blob_min_area: 150
+  Learning_rate: -1
+  Pixelsper_meter: 100
+  Centroid_position: 1
+  Person_size: '[134, 113]'
+  Tracking_distance_bb_factor: 1.2
+  Overlap_threshold: 30
+  Debug_output: 0
