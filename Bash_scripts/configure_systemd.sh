@@ -1,8 +1,9 @@
 
 #!/bin/bash
 # Ask the user the service name and the path
+echo WARNING: THE WATCHDOG HAS BEEN DEACTIVATED BY DEFAULT IF THE WATHDOG IS REQUIRED AFTER EXITING THE SCRIPT GO TO \'sudo nano /lib/systemd/system/service_name.service\' AND ACTIVATE IT
 read -p 'servicename (without .service): ' service
-read -p 'python script?(1/0) : ' check_python
+read -p 'python script? (1/0) : ' check_python
 
 
 if [[ "$check_python" -eq 1 ]]; then
@@ -10,9 +11,9 @@ if [[ "$check_python" -eq 1 ]]; then
 	read -p 'set the python script path : ' python_path
 	
 
-	printf '%s\n' '-----------------------'
+	printf '%s\n' '-----------------------------------------------------------------------------------------------------------------------'
 	echo Now the systemd will be configured to include the python script
-	echo sudo nano /lib/systemd/system/"$service".service
+	echo "
 	[Unit]
 	Description= SCP Service
 	After=multi-user.target
@@ -23,13 +24,13 @@ if [[ "$check_python" -eq 1 ]]; then
 	Restart=on-failure
 	RestartSec=5
 	[Install]
-	WantedBy=multi-user.target
+	WantedBy=multi-user.target">>sudo nano /lib/systemd/system/"$service".service
 	chmod 644 /lib/systemd/system/"$service"
 	sudo systemctl daemon-reload
 	sudo systemctl enable "$service"
 	echo Done configuring the systemd "$service"
-	printf '%s\n' '-----------------------'
-	read -p 'Do you want to start the service ? (y/n): ' start
+	printf '%s\n' '-----------------------------------------------------------------------------------------------------------------------'
+	read -p 'Do you want to start the service ? (y/n) : ' start
 	if [[ "$start" == 'y' ]]; then
 		sudo systemctl start "$service.service"
 		sudo systemctl status "$service.service"
@@ -37,6 +38,6 @@ if [[ "$check_python" -eq 1 ]]; then
 
 else
 echo To be implemented
-echo Closing script
-fi
 
+fi
+echo Closing script ...
