@@ -1,5 +1,5 @@
 
-#!/bin/bash
+#! /bin/bash
 # Ask the user the service name and the path
 echo WARNING: THE WATCHDOG HAS BEEN DEACTIVATED BY DEFAULT IF THE WATHDOG IS REQUIRED AFTER EXITING THE SCRIPT GO TO \'sudo nano /lib/systemd/system/service_name.service\' AND ACTIVATE IT
 read -p 'servicename (without .service): ' service
@@ -24,7 +24,7 @@ if [[ "$check_python" -eq 1 ]]; then
 	Restart=on-failure
 	RestartSec=5
 	[Install]
-	WantedBy=multi-user.target">>sudo nano /lib/systemd/system/"$service".service
+	WantedBy=multi-user.target" >> /lib/systemd/system/"$service".service
 	chmod 644 /lib/systemd/system/"$service"
 	sudo systemctl daemon-reload
 	sudo systemctl enable "$service"

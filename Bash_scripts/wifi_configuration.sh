@@ -1,8 +1,8 @@
-#!/bin/bash
+#! /bin/bash
 
 
 # Download necessary libraries and configure the raspberry pi to create a wifi hotspot
-read -p 'select a static ipaddress followed by / subnetmask (24 for example): ' ip_subnet
+read -p 'select a static ipaddress(for example 1892.168.5.2) followed by / subnetmask (24 for example): ' ip_subnet
 read -p 'select wifi name : ' wifi_name
 read -p 'select a wifi password : ' wifi_password
 
@@ -29,7 +29,7 @@ fi
 
 apt install hostapd -y
 systemctl unmask hostapd
-systemctl enable hostpad
+systemctl enable hostapd
 apt install dnsmasq -y
 DEBIAN_FRONTEND=noninteractive apt install -y netfilter-persistent iptables-persistent
 echo  "interface wlan0" >> /etc/dhcpcd.conf
@@ -46,7 +46,7 @@ echo "dhcp-range=$range_one,$range_two,$sbnet,24h" >> /etc/dnsmasq.conf
 echo "domain=wlan" >> /etc/dnsmasq.conf
 echo "address=/gw.wlan/$ip" >> /etc/dnsmasq.conf
 rfkill unblock wlan
-echo "country_code=ES" > /etc/hostapd/hostapd.conf 
+echo "country_code=ES" >> /etc/hostapd/hostapd.conf 
 echo "interface=wlan0" >> /etc/hostapd/hostapd.conf 
 echo "ssid=$wifi_name" >> /etc/hostapd/hostapd.conf 
 echo "hw_mode=g" >> /etc/hostapd/hostapd.conf 

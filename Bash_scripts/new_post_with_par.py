@@ -11,7 +11,7 @@ def fromstrtosecs(str):
     return int(hour)*3600+int(minutes)*60+int(seconds)
 def post(path,file_state):
     global IN_prev,OUT_prev,TIME_prev,LINES_prev
-    url="http://10.161.9.64:1880/test"
+    url="http://10.161.9.64:1880/forusb"
     with open(path,"r+") as file:
         data=file.readlines()
         LINES_new=len(data)
@@ -38,11 +38,11 @@ def post(path,file_state):
         print(res_out)
         print(time)
         if (res_in!=0 and time>=1):
-            requests.post(url,json=[{"IN":res_in},{"Camera":"realsense"}])
+            requests.post(url,json=[{"IN":res_in},{"Camera":"Usb"}])
             #IN_prev=IN_new
             #TIME_prev=TIME_new
         if (res_out!=0 and time>=1):
-            requests.post(url,json=[{"OUT":res_out},{"Camera":"realsense"}])
+            requests.post(url,json=[{"OUT":res_out},{"Camera":"Usb"}])
             #OUT_prev=OUT_new
             #TIME_prev=TIME_new 
             
@@ -99,7 +99,7 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s - %(message)s',
                         datefmt='%Y-%m-%d %H:%M:%S')
-    path = "C:/Users/10655707/Desktop/realsense/"
+    path = "/home/pi/Desktop/raspberry"
     event_handler = LoggingEventHandler()
 
     observer = Observer()
@@ -111,4 +111,5 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         observer.stop()
     observer.join()
+
 
