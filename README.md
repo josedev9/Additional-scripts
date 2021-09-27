@@ -3,7 +3,11 @@ Additional scripts for raspberry pi config
 
 TODO
 
-<p align="center"> --LOOK FOR A WAY FOR FETCHING ONLY ONE FOLDER-- </p>
+<p align="center">
+    <b>Information about how to clone a single file from a git repository</b><br>
+  <b>https://stackoverflow.com/questions/600079/how-do-i-clone-a-subdirectory-only-of-a-git-repository</b> 
+  <br><br>
+</p>
 
 
 ---------------------------------------------------------READ BEFORE LAUNCHING THE SCRIPTS--------------------------------------------
