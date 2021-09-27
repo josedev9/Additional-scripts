@@ -3,7 +3,7 @@ Additional scripts for raspberry pi config
 
 TODO
 
---LOOK FOR A WAY FOR FETCHING ONLY ONE FOLDER--
+<p align="center"> --LOOK FOR A WAY FOR FETCHING ONLY ONE FOLDER-- </p>
 
 
 ---------------------------------------------------------READ BEFORE LAUNCHING THE SCRIPTS--------------------------------------------
