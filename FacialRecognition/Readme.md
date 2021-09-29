@@ -55,7 +55,7 @@ sudo apt-get install build-essential
  
  4. Copy the adequate realsense libraries into this folder:
  ```
- cd /home/$USER/Desktop/RealSenseID/build/lib && cp librsid.so /home/$USER/Desktop/fac_rec/FacialRecognition && cp rsid_py*.so /home/$USER/Desktop/fac_rec/FacialRecognition
+ cd /home/$USER/Desktop/RealSenseID/build/lib && cp librsid.so (or librsid.dll in windows) /home/$USER/Desktop/fac_rec/FacialRecognition && cp rsid_py*.so /home/$USER/Desktop/fac_rec/FacialRecognition
  
  ```
 
