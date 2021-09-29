@@ -4,7 +4,8 @@ import getpass
 class Wifi:
     '''
     Class for stablishing quick wifi connections.
-
+    ===
+    
         Main functions:
 
 
@@ -18,8 +19,8 @@ class Wifi:
               Starts at __init__
             '''
     def __init__(self):
-        """self.name=input("Introduce the wifi's name: ")
-        self.password=input("Introduce the wifi's password: ")"""
+        """ self.name=input("Introduce the wifi's name: ")
+        self.password=input("Introduce the wifi's password: ") """
         self.name,self.password="TKQR2020","QRApp2020"
         self.wifi_conn(self.name,self.password)
 
