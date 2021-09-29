@@ -8,7 +8,10 @@ from numpy import int32
 import requests
 from requests.auth import HTTPBasicAuth
 import rsid_py
-from connect_to_wifi import Wifi
+from wifi_script import Wifi
+first_connnection=True
+thr=True
+
 
 try :
     import numpy as np
@@ -22,11 +25,13 @@ except ImportError:
     print('Failed importing cv2. Please install it (pip install opencv-python).')
     exit(0)
 
-"""try:
-    wifi=Wifi()
+try:
+    if first_connnection:
+        wifi=Wifi()
+        first_connnection=False
 except:
     print("Wifi not configured, exiting ...")
-    sys.exit()"""
+    sys.exit()
 
 
 # globals
@@ -41,7 +46,7 @@ USERNAME="TKEICQR"
 PASSWORD="Thyssen2020"
 IPADDRESS="http://192.168.4.1:1880/insight"
 AUTH=True
-
+FLOORS=[0,1,2]
 
 
 print('Version: ' + rsid_py.__version__)
@@ -158,7 +163,13 @@ def color_from_msg(msg):
 
 
 
-def http_post(ip,username,password,current_floor,dest_floor,auth):
+def http_post(ip,username,password,auth):
+    
+    current_floor=int(input("Select your current location please: "))
+    dest_floor=int(input("Select your destination: "))
+    if current_floor not in FLOORS or dest_floor not in FLOORS:
+        print("Selected floor or destination not available for this configuration, the call has been cancelled")
+        return
     if auth:
         msg=requests.post(ip,json={"unit_id": 0,'floor':current_floor,'dest_floor':dest_floor},
             auth=HTTPBasicAuth(username,password))
@@ -167,18 +178,17 @@ def http_post(ip,username,password,current_floor,dest_floor,auth):
         msg=requests.post(ip,json={"unit_id": 0,'floor':current_floor,'dest_floor':dest_floor})
         print(f"Status code {msg.status_code}")
 
-
 def send_userid(face):
     global t0
     if round(time.perf_counter()-t0)>2:
         if(face["user_id"])=="jose":
-            http_post(IPADDRESS,USERNAME,PASSWORD,2,1,AUTH)
+            http_post(IPADDRESS,USERNAME,PASSWORD,AUTH)
         elif(face["user_id"]=="raul"):
-            http_post(IPADDRESS,USERNAME,PASSWORD,2,0,AUTH)
+            http_post(IPADDRESS,USERNAME,PASSWORD,AUTH)
         t0=time.perf_counter()
     return
-
 def show_face(face, image):
+    global thr
     # scale rets from 1080p
     f = face['face']
 
@@ -197,7 +207,11 @@ def show_face(face, image):
     else:
         if success:
             color = (0x11, 0xcc, 0x11)
-            send_userid(face)  
+            """ send_userid(face) """
+            if thr:
+                threading.Thread(target=send_userid,args=(face,),daemon=True).start()
+                thr=False
+
         else: 
             color=(0x11, 0x11, 0xcc)
     thickness = 2
