@@ -1,6 +1,7 @@
 import os
 import queue
 import sys
+from color import Color
 import threading
 import traceback
 import time
@@ -165,12 +166,14 @@ def color_from_msg(msg):
 
 def http_post(ip,username,password,auth,face):
     if face!="raul":
-        current_floor=int(input("Select your current location please: "))
-        dest_floor=int(input("Select your destination: "))
+        os.system('cls' if os.name == 'nt' else 'clear')
+        current_floor=int(input(f"{Color.PURPLE}{Color.BOLD}Select your current location please: "))
+        dest_floor=int(input(f"Select your destination: "))
     else:
         current_floor,dest_floor=0,2
+    print(f"Selection introduced: LOP-{current_floor} and COP-{dest_floor}{Color.END}")
     if current_floor not in FLOORS or dest_floor not in FLOORS:
-        print("Selected floor or destination not available for this configuration, the call has been cancelled")
+        print(f"{Color.RED}{Color.BOLD}Selected floor or destination not available for this configuration, the call has been cancelled{Color.END}")
         return
     if auth:
         msg=requests.post(ip,json={"unit_id": 0,'floor':current_floor,'dest_floor':dest_floor},
