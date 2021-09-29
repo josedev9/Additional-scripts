@@ -163,10 +163,12 @@ def color_from_msg(msg):
 
 
 
-def http_post(ip,username,password,auth):
-    
-    current_floor=int(input("Select your current location please: "))
-    dest_floor=int(input("Select your destination: "))
+def http_post(ip,username,password,auth,face):
+    if face!="raul":
+        current_floor=int(input("Select your current location please: "))
+        dest_floor=int(input("Select your destination: "))
+    else:
+        current_floor,dest_floor=0,2
     if current_floor not in FLOORS or dest_floor not in FLOORS:
         print("Selected floor or destination not available for this configuration, the call has been cancelled")
         return
@@ -182,9 +184,9 @@ def send_userid(face):
     global t0
     if round(time.perf_counter()-t0)>2:
         if(face["user_id"])=="jose":
-            http_post(IPADDRESS,USERNAME,PASSWORD,AUTH)
+            http_post(IPADDRESS,USERNAME,PASSWORD,AUTH,face["user_id"])
         elif(face["user_id"]=="raul"):
-            http_post(IPADDRESS,USERNAME,PASSWORD,AUTH)
+            http_post(IPADDRESS,USERNAME,PASSWORD,AUTH,face["user_id"])
         t0=time.perf_counter()
     return
 def show_face(face, image):
