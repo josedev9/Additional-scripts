@@ -11,8 +11,6 @@ from requests.auth import HTTPBasicAuth
 import rsid_py
 from wifi_script import Wifi
 first_connnection=True
-thr=True
-
 
 try :
     import numpy as np
@@ -26,13 +24,13 @@ except ImportError:
     print('Failed importing cv2. Please install it (pip install opencv-python).')
     exit(0)
 
-try:
+"""try:
     if first_connnection:
         wifi=Wifi()
         first_connnection=False
 except:
     print("Wifi not configured, exiting ...")
-    sys.exit()
+    sys.exit()"""
 
 
 # globals
@@ -42,6 +40,7 @@ window_init = False
 status_msg = ''
 # array of (faces, success, user_name)
 detected_faces = []
+
 t0=time.perf_counter()
 USERNAME="TKEICQR"
 PASSWORD="Thyssen2020"
@@ -165,13 +164,14 @@ def color_from_msg(msg):
 
 
 def http_post(ip,username,password,auth,face):
-    if face!="raul":
+    if face["user_id"]!="raul":
         os.system('cls' if os.name == 'nt' else 'clear')
         current_floor=int(input(f"{Color.PURPLE}{Color.BOLD}Select your current location please: "))
         dest_floor=int(input(f"Select your destination: "))
     else:
         current_floor,dest_floor=0,2
-    print(f"Selection introduced: LOP-{current_floor} and COP-{dest_floor}{Color.END}")
+        os.system('cls' if os.name=='nt' else 'clear')
+    print(f"{Color.PURPLE}Selection introduced: LOP-{current_floor} and COP-{dest_floor}{Color.END}")
     if current_floor not in FLOORS or dest_floor not in FLOORS:
         print(f"{Color.RED}{Color.BOLD}Selected floor or destination not available for this configuration, the call has been cancelled{Color.END}")
         return
@@ -183,17 +183,15 @@ def http_post(ip,username,password,auth,face):
         msg=requests.post(ip,json={"unit_id": 0,'floor':current_floor,'dest_floor':dest_floor})
         print(f"Status code {msg.status_code}")
 
-def send_userid(face):
-    global t0
-    if round(time.perf_counter()-t0)>2:
-        if(face["user_id"])=="jose":
-            http_post(IPADDRESS,USERNAME,PASSWORD,AUTH,face["user_id"])
-        elif(face["user_id"]=="raul"):
-            http_post(IPADDRESS,USERNAME,PASSWORD,AUTH,face["user_id"])
-        t0=time.perf_counter()
-    return
+def send_userid():
+    global t0,detected_faces
+    while True:
+        for face in detected_faces:
+            success = face.get('success')
+            if success and round(time.perf_counter()-t0)>2:
+                http_post(IPADDRESS,USERNAME,PASSWORD,AUTH,face)
+                t0=time.perf_counter()
 def show_face(face, image):
-    global thr
     # scale rets from 1080p
     f = face['face']
 
@@ -210,21 +208,17 @@ def show_face(face, image):
     if success is None:
         color = (0x33,0xcc, 0xcc) # yellow
     else:
-        if success:
-            color = (0x11, 0xcc, 0x11)
-            """ send_userid(face) """
-            if thr:
+            color = (0x11, 0xcc, 0x11) if success else (0x11, 0x11, 0xcc)
+            #send_userid(face)
+            """ if time.perf_counter()-thr>5:
                 threading.Thread(target=send_userid,args=(face,),daemon=True).start()
-                thr=False
-
-        else: 
-            color=(0x11, 0x11, 0xcc)
+                thr=time.perf_counter() """
     thickness = 2
     cv2.rectangle(image, start_point, end_point, color, thickness)
 
-
+    return face,success
     # show user id
-
+send_thr=threading.Thread(target=send_userid,name="Send_call_thread",daemon=True).start()
 
 def on_image(image):
     try:
